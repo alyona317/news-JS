@@ -7,13 +7,13 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    getResp<T>(
         { endpoint, options = {} }: { endpoint: string; options?: Record<string, string> },
-        callback = () => {
+        callback: (data: T) => void = () => {
             console.error('No callback for GET response');
         }
     ) {
-        this.load('GET', endpoint, callback, options);
+        this.load<T>('GET', endpoint, callback, options);
     }
 
     errorHandler(res: Response): Response {
@@ -37,10 +37,10 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(
+    private load<T>(
         method: string,
         endpoint: string,
-        callback: (data: unknown) => void,
+        callback: (data: T) => void,
         options: Record<string, string> = {}
     ) {
         fetch(this.makeUrl(options, endpoint), { method })
