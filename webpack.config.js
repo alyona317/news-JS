@@ -9,6 +9,11 @@ const baseConfig = {
     mode: 'development',
     module: {
         rules: [
+        {
+            test: /\.[jt]s$/i,
+            use: 'ts-loader',
+            exclude: /node_modules/,
+        },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
@@ -16,7 +21,7 @@ const baseConfig = {
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
