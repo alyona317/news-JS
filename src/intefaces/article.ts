@@ -1,7 +1,7 @@
-import { Source } from "./source";
+import { Source } from './source';
 
 export interface Article {
-source: Pick<Source, 'id' | 'name'>;
+    source: Pick<Source, 'id' | 'name'>;
     author: string | null;
     title: string;
     description: string | null;
